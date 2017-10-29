@@ -1,6 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
-const fs = require('fs'); 
+const fs = require('fs');
+
+const port = process.env.PORT || 3000;
+
 var app = express(); 
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -30,14 +33,6 @@ hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
 });
 
-// app.get('/', (req, res) =>{
-//     // res.send('<h1>Hello Express!</h1>');
-//     res.send({
-//         name: 'Stephen',
-//         likes: ['Snowboarding','Coding']
-//     });
-// });
-
 app.get('/', (req, res) => {
     res.render('home.hbs',{
         pageTitle: 'Welcome Page',
@@ -58,5 +53,5 @@ app.get('/bad', (req, res) => {
 });
 
 app.listen(3000, ()=>{
-    console.log('Server started on port 3000');
+    console.log(`Server started on port ${port}`);
 });
